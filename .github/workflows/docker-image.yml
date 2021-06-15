@@ -27,5 +27,5 @@ jobs:
         file: ./Dockerfile
         tags: ${{ secrets.DOCKER_USERNAME }}/pinning-test-actions-dockerhub:latest
         labels: |
-          org.opencontainers.image.revision=$GITHUB_SHA
+          org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.source=Dockerfile
