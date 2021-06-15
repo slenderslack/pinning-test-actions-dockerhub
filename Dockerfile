@@ -1,2 +1,2 @@
 FROM ubuntu:devel
-CMD ["echo", "{:version 1}"]
+CMD ["echo", "{:version 2}"]
