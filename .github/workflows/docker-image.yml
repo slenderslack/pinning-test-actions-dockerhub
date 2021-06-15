@@ -14,8 +14,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --label "org.opencontainers.image.revision=$GITHUB_SHA" --label "org.opencontainers.image.source=Dockerfile" --tag slimslenderslacks/pinning-test-actions-dockerhub:latest
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+        labels: |
+          org.opencontainers.image.revision=$GITHUB_SHA
+          org.opencontainers.image.source=Dockerfile
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -24,5 +29,8 @@ jobs:
     - name: Push to Docker Hub
       uses: docker/build-push-action@v2
       with:
+        context: ./
         push: true
-        tags: slimslenderslacks/pinning-test-actions-dockerhub:latest
+        file: ./Dockerfile
+        tags: ${{ secrets.DOCKER_USERNAME }}/pinning-test-actions-dockerhub:latest
+        labels: ${{ steps.meta.output.labels }}
