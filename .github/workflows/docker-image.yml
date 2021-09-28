@@ -14,7 +14,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v3
       with:
-        images: slenderslack/${{ github.event.repository.name }}
+        images: slimslenderslacks/${{ github.event.repository.name }}
         labels: |
           com.atomist.containers.image.dockerfile=Dockerfile
         tags: |
