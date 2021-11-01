@@ -1,2 +1,2 @@
 FROM ubuntu:devel
-CMD ["echo", "{:version 59}"]
+CMD ["echo", "{:version 60}"]
